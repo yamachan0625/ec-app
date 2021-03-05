@@ -1,5 +1,7 @@
 const initislState = {
-  products: {},
+  products: {
+    list: [],
+  },
   users: {
     isSignedIn: false,
     role: '',

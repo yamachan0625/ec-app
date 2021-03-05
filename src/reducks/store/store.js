@@ -6,6 +6,7 @@ import {
 import thunk from 'redux-thunk';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { UsersReducer } from '../users/reducers';
+import { ProductsReducer } from '../products/reducers';
 
 export default function createStore(history) {
   // reduxのcreateStoreメソッドの別名
@@ -13,6 +14,7 @@ export default function createStore(history) {
     combineReducers({
       router: connectRouter(history),
       users: UsersReducer,
+      products: ProductsReducer,
     }),
     applyMiddleware(routerMiddleware(history), thunk)
   );
