@@ -6,6 +6,7 @@ import {
   Reset,
   ProductEdit,
   ProductList,
+  ProductDetail,
 } from './templates';
 import Auth from './Auth';
 
@@ -18,6 +19,7 @@ const Router = () => {
       <Auth>
         <Route exact path={'(/)?'} component={ProductList} />
         <Route path={'/product/edit(/:id)?'} component={ProductEdit} />
+        <Route exact path={'/product/:id'} component={ProductDetail} />
       </Auth>
     </Switch>
   );
