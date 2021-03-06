@@ -27,7 +27,6 @@ const ImageArea = (props) => {
   };
 
   const uploadImage = (event) => {
-    console.log(event);
     // dispatch(showLoadingAction('uploading...'));
     const file = event.target.files;
     let blob = new Blob(file, { type: 'image/jpeg' });

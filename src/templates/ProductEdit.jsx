@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { saveProduct } from '../reducks/products/operations';
 import ImageArea from '../components/products/ImageArea';
 import { db } from '../firebase';
+import { SetSizeArea } from '../components/products';
 
 const ProductEdit = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const ProductEdit = () => {
   const [gender, setGender] = useState('');
   const [price, setPrice] = useState('');
   const [images, setImages] = useState([]);
+  const [sizes, setSizes] = useState([]);
 
   const categories = [
     { id: 'tops', name: 'トップス' },
@@ -45,9 +47,15 @@ const ProductEdit = () => {
           setCategory(data.category);
           setDescription(data.description);
           setPrice(data.price);
+          setSizes(data.sizes);
         });
     }
   }, [id]);
+
+  // このコンポーネントのstateが変化した際に子コンポーネントの不要再レンダリングを防ぐ
+  const setNameProps = React.useCallback((e) => {
+    setName(e.target.value);
+  }, []);
 
   return (
     <section>
@@ -62,7 +70,7 @@ const ProductEdit = () => {
           rows={1}
           value={name}
           type={'text'}
-          onChange={(e) => setName(e.target.value)}
+          onChange={setNameProps}
         />
         <TextInput
           fullWidth={true}
@@ -98,13 +106,24 @@ const ProductEdit = () => {
           type={'number'}
           onChange={(e) => setPrice(e.target.value)}
         />
-        <div className="module-spacer--medium" />
+        <div className="module-spacer--small" />
+        <SetSizeArea sizes={sizes} setSizes={setSizes} />
+        <div className="module-spacer--small" />
         <div className="center">
           <PrimaryButton
             label={'商品情報を保存'}
             onClick={() =>
               dispatch(
-                saveProduct(name, description, category, gender, price, images)
+                saveProduct(
+                  id,
+                  name,
+                  description,
+                  category,
+                  gender,
+                  price,
+                  images,
+                  sizes
+                )
               )
             }
           ></PrimaryButton>
