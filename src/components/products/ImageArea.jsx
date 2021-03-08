@@ -53,7 +53,6 @@ const ImageArea = (props) => {
     //   dispatch(hideLoadingAction());
     // });
   };
-  console.log(props.images);
 
   return (
     <div>

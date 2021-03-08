@@ -40,7 +40,6 @@ const ProductEdit = () => {
         .get()
         .then((snapshot) => {
           const data = snapshot.data();
-          console.log(data);
           setName(data.name);
           setImages(data.images);
           setGender(data.gender);

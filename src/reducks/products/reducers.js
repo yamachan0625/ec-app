@@ -7,7 +7,6 @@ export const ProductsReducer = (state = initislState.products, action) => {
       return { ...state, list: [...action.payload] };
     case Actions.DELETE_PRODUCTS:
       return { ...state, list: [...action.payload] };
-
     default:
       return state;
   }
